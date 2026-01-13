@@ -1,0 +1,559 @@
+/* 1. 定义字体：告诉浏览器字体文件在哪里 */
+@font-face {
+  font-family: "汉仪铸字闪电"; /* 这个名字要和你 _config.yml 里填的一模一样 */
+  src: url("/fonts/HYZhuZiShanDianW-2.ttf"); /* 对应第一步的文件路径，注意前面有斜杠 */
+  font-display: swap;
+}
+/* 接在你截图代码的下面 */
+
+/* 主标题样式（站点名称） */
+#site-info #site-title {
+    font-size: 5rem;           /* 字体大小，4rem 约等于 64px，可根据需求调整 */
+    /* 这一行意思是：给文字加一层黑色的光晕，像浮在画面上 */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 
+                 0 0 10px rgba(0,0,0,0.5);
+    font-family: '汉仪铸字闪电', cursive; /* 替换为你想要的字体名称 */
+    font-weight: normal;         
+    line-height: 1.5;          /* 行高 */
+    letter-spacing: 2px;       /* 字间距 */
+}
+
+#site-info #subtitle {
+    position: relative;
+    color: #fff;
+    text-shadow: 0.05em 0 0 rgba(255,0,81,.75),
+                -0.025em -0.05em 0 rgba(0,255,153,.75),
+                0.025em 0.05em 0 rgba(255,255,51,.75);
+    animation: glitch 500ms infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 0.05em 0 0 rgba(255,0,81,.75), -0.05em -0.025em 0 rgba(0,255,153,.75), 0.025em 0.05em 0 rgba(255,255,51,.75); }
+    14% { text-shadow: 0.05em 0 0 rgba(255,0,81,.75), -0.05em -0.025em 0 rgba(0,255,153,.75), 0.025em 0.05em 0 rgba(255,255,51,.75); }
+    15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,81,.75), 0.025em 0.025em 0 rgba(0,255,153,.75), -0.05em -0.05em 0 rgba(255,255,51,.75); }
+    /* ... 更多关键帧可增加抖动感 ... */
+    100% { text-shadow: -0.025em 0 0 rgba(255,0,81,.75), -0.025em -0.025em 0 rgba(0,255,153,.75), -0.025em -0.05em 0 rgba(255,255,51,.75); }
+}
+
+
+
+/* 应用于文章标题 */
+#recent-posts .article-title,  /* 👈 新增：这是主页列表里的标题 */
+#post-info .post-title, .post-title {
+  font-family: '汉仪铸字闪电', sans-serif !important;
+}
+
+
+/* 首页大图遮罩透明度调整 */
+#page-header.full_page::before {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 文章页/归档页等顶部图遮罩透明度调整 */
+#page-header:not(.not-top-img)::before {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+/* 头像微调 */
+.avatar-img {
+  /* 平时转得慢一点 (10秒转一圈)，优雅一点 */
+  animation: avatar_turn_around 10s linear infinite !important;
+  /* 加个柔和的边框 */
+  border: 2px solid #fff; 
+  /* 加个阴影，更有立体感 */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* 鼠标悬停时的特效 */
+.avatar-img:hover {
+  /* 鼠标放上去变快 (2秒一圈) */
+  animation: avatar_turn_around 2s linear infinite !important;
+  /* 并且稍微放大一点点 */
+  transform: scale(1.1);
+  /* 发光效果 (可以是红色，呼应你的红色理论) */
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); 
+}
+
+#footer {
+  background: transparent !important;
+  background-color: transparent !important;
+  /* 如果有阴影或边框也可以一并去掉 */
+  box-shadow: none !important;
+}
+
+/* =========================================================
+ /* =========================================================
+   方案 A：黑曜石·机甲武装版 (Mecha Ver.) - 全局统一补丁
+   ========================================================= */
+
+/* --- 1. 机甲装甲容器 (已添加 div#category 和 div#tag) --- */
+.recent-post-item,
+.card-widget,
+div#post,
+div#archive,
+div#page,
+div#category,  /* <--- 新增：修复分类子页面白色背景 */
+div#tag        /* <--- 新增：顺手修复标签子页面白色背景 */
+{
+  /* 黑曜石背景 */
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* === 核心形状：对角切边 (左上/右下圆，右上/左下直) === */
+  border-radius: 20px 0 20px 0 !important;
+
+  /* === 边框设计：侧翼装甲风格 === */
+  border: none !important;
+  border-left: 4px solid rgba(255, 255, 255, 0.6) !important;
+  border-right: 4px solid rgba(255, 255, 255, 0.6) !important;
+  
+  /* 加上一点点内阴影，增加厚重感 */
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8) !important;
+  
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  /* 修复：确保容器内的文字不会因为默认样式导致不可见 */
+  color: #eee !important;
+}
+
+/* --- 2. 机械充能：鼠标悬停特效 --- */
+.recent-post-item:hover,
+.card-widget:hover,
+div#category:hover, /* 让分类页悬停也有呼吸感（可选） */
+div#tag:hover
+{
+  /* 悬停时切角反转 */
+  border-radius: 0 20px 0 20px !important;
+  /* 侧边装甲充能变亮 */
+  border-color: #fff !important;
+  /* 纯白光晕 */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.1) !important;
+  transform: scale(1.01) translateY(-2px);
+}
+
+/* --- 3. 视觉修复系统 (文字颜色强制覆盖) --- */
+/* 扩大了覆盖范围，确保分类页标题和链接也是白色 */
+.recent-post-item *, .card-widget *, div#post *, div#page *, div#category *, div#tag * {
+  color: #eee !important;
+}
+
+/* 针对特定标题的高亮修复 */
+.article-title, .article-title a, .post-title, .item-headline span, 
+div#category .article-sort-item-title, /* 修复分类页里的文章标题 */
+div#tag .article-sort-item-title 
+{
+  color: #fff !important;
+  font-family: 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- 4. 额外修复：分类页时间线的颜色 --- */
+/* 如果分类页是时间轴样式，左边的线默认可能是黑的，这里改成白色 */
+.article-sort-item:before, .article-sort-title:before, .article-sort-title:after {
+    border-color: #fff !important;
+}
+.article-sort-item-img {
+    border: 2px solid #fff !important; /* 时间轴图片的边框 */
+}
+
+/* =========================================================
+   机甲终端计时器 - 白底绿数蓝脉冲版
+   ========================================================= */
+
+/* 1. 外层包裹 */
+.timer-container-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* 2. 主容器：白边框 + 黑底 */
+.timer-container {
+    background: rgba(0, 0, 0, 0.85);
+    /* 大边框改回白色 */
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+    /* 白色呼吸光晕 */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15), inset 0 0 10px rgba(0, 0, 0, 0.8);
+    
+    transform: skewX(-20deg);
+    padding: 5px 15px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/* 3. 标签文字 (SYSTEM UPTIME 等)：保持白色 */
+.timer-label, .timer-split {
+    /* 修正倾斜 */
+    transform: skewX(20deg);
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-weight: bold;
+    
+    color: #fff; /* 纯白文字 */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+    margin: 0 2px;
+}
+
+/* 4. 数字切片 (静止状态)：绿色数字 + 绿色边框 */
+.digit-strip {
+    display: inline-block;
+    
+    /* 修正倾斜 */
+    transform: skewX(20deg) !important;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-weight: bold;
+    
+    /* === 静止配色：绿 === */
+    color: #00ff41; 
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    background: rgba(0, 20, 0, 0.6); /* 深绿底色衬托 */
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.6);
+    
+    padding: 2px 6px;
+    font-size: 16px;
+    
+    /* 颜色过渡：从蓝色变回绿色的时候，慢一点(0.8s)，看着舒服 */
+    transition: all 0.8s ease;
+}
+
+/* =========================================================
+   JS 触发的变身特效 (变蓝)
+   ========================================================= */
+
+.shake-digit {
+    /* === 激活配色：电光蓝 === */
+    color: #00c3ff !important;
+    border-color: #00c3ff !important;
+    text-shadow: 0 0 15px #00c3ff !important;
+    background: rgba(0, 50, 80, 0.8) !important; /* 蓝底 */
+    
+    /* 抖动动画 */
+    animation: glitch-shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* 抖动关键帧 (之前缺的就是这部分) */
+@keyframes glitch-shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+} /* <--- 之前就是少了这里的这个大括号！ */
+
+/* =========================================================
+   分类页终极版：黑曜石机甲 + 全息数据 + 本地背景图
+   ========================================================= */
+
+/* --- 1. 布局：保持网格阵列 --- */
+#page .category-lists .category-list {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 25px !important;
+    padding: 0 !important;
+    margin: 30px 0 !important;
+}
+
+/* --- 2. 主分类卡片：核心融合区域 --- */
+#page .category-lists .category-list > li {
+    position: relative;
+    list-style: none !important;
+    
+    /* === [核心] 背景控制：本地图片 + 深蓝科技感蒙版 === */
+    /* rgba(10, 20, 30, 0.85) 是深蓝黑色的蒙版。
+       如果不加这层蒙版，你的图片太亮的话，上面的青色文字就看不清了。
+    */
+    background: linear-gradient(rgba(10, 20, 30, 0.85), rgba(10, 20, 30, 0.85)),
+                url('/img/category.jpg') no-repeat center center !important; /* <--- 在这里改文件名 */
+    
+    background-size: cover !important;
+    backdrop-filter: blur(5px); /* 让背景图稍微模糊一点，更有质感 */
+    
+    /* === [形状] 黑曜石风格：对角切圆角 === */
+    border-radius: 20px 0 20px 0 !important; 
+
+    /* === [边框] 黑曜石风格：左右加粗侧翼 (青色) === */
+    border: none !important;
+    border-left: 5px solid #00f3ff !important;  /* 赛博青色侧翼 */
+    border-right: 5px solid #00f3ff !important; 
+    
+    /* 底部阴影 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+    
+    padding: 25px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* 隐藏原本的角标和圆点 */
+#page .category-lists .category-list > li::after { display: none !important; }
+#page .category-lists .category-list > li::before { display: none !important; }
+
+
+/* --- 3. 主标题 (保持清晰的白色+发光) --- */
+#page .category-lists .category-list > li > a {
+    display: block !important;
+    color: #fff !important;
+    font-size: 1.6rem !important;
+    font-weight: 700;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); /* 青色光晕 */
+}
+
+/* 数量显示 */
+#page .category-lists .category-list > li > span.category-list-count {
+    float: right;
+    font-family: monospace;
+    color: #00f3ff !important;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+
+/* --- 4. 子分类：全息胶囊 (保留之前很好看的样式) --- */
+#page .category-lists .category-list ul.category-list-child {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    padding: 0 !important;
+    margin-top: 15px !important;
+    /* 分割线 */
+    border-top: 1px dashed rgba(0, 243, 255, 0.3) !important; 
+    padding-top: 15px !important;
+}
+
+#page .category-lists .category-list ul.category-list-child li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    width: auto !important;
+}
+#page .category-lists .category-list ul.category-list-child li::before {display: none !important;}
+
+#page .category-lists .category-list ul.category-list-child li a {
+    display: block !important;
+    font-size: 0.9rem !important;
+    padding: 5px 12px !important;
+    
+    /* 子分类胶囊：半透明青色底 */
+    background: rgba(0, 243, 255, 0.15) !important;
+    border: 1px solid rgba(0, 243, 255, 0.25);
+    color: #8be9fd !important; /* 亮青色文字 */
+    text-decoration: none !important;
+    transition: all 0.2s;
+    border-radius: 4px; 
+}
+
+
+/* --- 5. 交互特效：悬停时“呼吸” + 形状变换 --- */
+#page .category-lists .category-list > li:hover {
+    /* 形状反转：黑曜石经典动作 (左上变直，右上变圆) */
+    border-radius: 0 20px 0 20px !important; 
+    
+    transform: translateY(-5px);
+    
+    /* 悬停时蒙版变淡一点点，让图片透出来更多 */
+    background: linear-gradient(rgba(10, 20, 30, 0.6), rgba(10, 20, 30, 0.6)),
+                url('/img/your_image.jpg') no-repeat center center !important; /* <--- 记得这里也要改图片名 */
+    
+    background-size: cover !important;
+
+    /* 边框变白高亮 */
+    border-color: #fff !important; 
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.4), inset 0 0 15px rgba(0, 243, 255, 0.2);
+}
+
+/* 子分类悬浮 */
+#page .category-lists .category-list ul.category-list-child li a:hover {
+    background: #00f3ff !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px #00f3ff;
+}
+
+/* =========================================================
+   方案二：机密档案模式 (The Dossier / Terminal Mode)
+   风格：理性、赛博、数据终端、黑曜石
+   ========================================================= */
+
+/* 1. 卡片主体：黑曜石终端面板 */
+#recent-posts > .recent-post-item {
+  /* 基础外观 */
+  background: rgba(16, 20, 25, 0.85) !important; /* 深色半透明背景 */
+  backdrop-filter: blur(10px) !important;        /* 毛玻璃效果 */
+  border: 1px solid rgba(0, 243, 255, 0.2) !important; /* 只有一点点亮度的青色边框 */
+  
+  /* 造型：切角设计 (Tech Corners) */
+  /* 左上角和右下角切掉一块，营造硬核机械感 */
+  clip-path: polygon(
+    20px 0, 100% 0, 
+    100% calc(100% - 20px), calc(100% - 20px) 100%, 
+    0 100%, 0 20px
+  ) !important;
+  
+  border-radius: 0 !important; /* 档案就要方方正正 */
+  margin-top: 20px !important;
+  transition: all 0.3s ease-in-out !important;
+  overflow: visible !important; /* 允许装饰文字溢出一点点 */
+}
+
+/* 2. 悬停交互：激活终端 */
+#recent-posts > .recent-post-item:hover {
+  border-color: #00f3ff !important; /* 边框高亮 */
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.1) !important; /* 内外发光 */
+  transform: scale(1.01); /* 微微上浮 */
+}
+
+/* 3. 装饰元素：右上角的系统日志 */
+#recent-posts > .recent-post-item::before {
+  content: ">> SYSTEM_LOG // ENCRYPTED"; /* 装饰文字 */
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-family: Consolas, monospace; /* 等宽代码字体 */
+  font-size: 12px;
+  color: #00f3ff;
+  opacity: 0.5;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 4. 装饰元素：左下角的权限标识 */
+#recent-posts > .recent-post-item::after {
+  content: "ACCESS_LEVEL: 05";
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  font-family: Consolas, monospace;
+  font-size: 10px;
+  color: #ff3c3c; /* 红色警告色 */
+  opacity: 0.7;
+  z-index: 2;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+/* 5. 文章封面图：档案照片风格 */
+.recent-post-item .post_cover {
+  width: 45% !important; /* 调整比例 */
+  height: 260px !important; /* 稍微高一点 */
+  
+  /* 图片上加一层扫描线网格 */
+  mask-image: linear-gradient(to bottom, black 50%, transparent 50%);
+  mask-size: 100% 4px; 
+}
+/* 图片本体 */
+.recent-post-item .post_cover img.post_bg {
+  filter: grayscale(30%) contrast(1.2); /* 稍微降低饱和度，增加对比，像旧显示器 */
+  transition: all 0.5s ease;
+}
+/* 悬停时恢复色彩 */
+#recent-posts > .recent-post-item:hover .post_cover img.post_bg {
+  filter: grayscale(0%) contrast(1);
+}
+
+/* 6. 文本区域：数据排版 */
+.recent-post-item > .recent-post-info {
+  width: 55% !important;
+  padding: 30px 40px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 标题 */
+.recent-post-item .article-title {
+  color: #fff !important;
+  font-family: "Microsoft YaHei", sans-serif; /* 此时用黑体更现代 */
+  font-weight: bold;
+  font-size: 1.6em !important;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+.recent-post-item .article-title:hover {
+  color: #00f3ff !important;
+}
+
+/* 元数据 (日期等) */
+.recent-post-item .article-meta-wrap {
+  color: rgba(255,255,255,0.6) !important;
+  font-family: Consolas, monospace;
+  margin: 10px 0;
+}
+
+/* 摘要 */
+.recent-post-item .article-content-text {
+  color: rgba(255,255,255,0.8);
+  border-left: 2px solid #00f3ff; /* 左侧加一条青色竖线 */
+  padding-left: 10px;
+  margin-top: 15px;
+}
+
+
+
+/* =========================================================
+   2. 量子积木特效 (已适配 Flex 布局)
+   ========================================================= */
+
+/* 初始状态：隐形 + 下沉 */
+.recent-post-item {
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: none !important; 
+}
+
+/* 激活状态：开始动画 */
+.recent-post-item.active {
+    animation: block-construct 0.6s steps(5, end) forwards !important;
+}
+
+/* 动画关键帧：重组过程 */
+@keyframes block-construct {
+    0% {
+        opacity: 0;
+        clip-path: polygon(0 0, 20% 0, 20% 20%, 0 20%);
+        transform: translate(-10px, -10px);
+        filter: hue-rotate(90deg);
+    }
+    20% {
+        opacity: 1;
+        clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%, 0 100%, 20% 100%, 20% 20%, 0 20%);
+        transform: translate(5px, 5px);
+        background-color: #00f3ff;
+    }
+    40% {
+        clip-path: polygon(0 0, 80% 0, 80% 80%, 0 80%, 0 100%, 50% 100%, 50% 50%, 0 50%);
+        transform: translate(-5px, 0);
+        filter: invert(1);
+    }
+    60% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        transform: translate(0, 0);
+        filter: none;
+        border-color: #fff;
+    }
+    80% {
+        opacity: 0.8; 
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+        clip-path: none; /* 释放裁剪，显示完整内容 */
+        
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+        border-color: transparent;
+        border-left-color: #00f3ff;
+        border-right-color: #00f3ff;
+    }
+}
+
+/* 偶数文章延迟出现 */
+.recent-post-item.active:nth-child(even) {
+    animation-delay: 0.15s !important;
+}
+

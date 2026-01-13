@@ -1,0 +1,48 @@
+{
+  "confirmDeletion": true,
+  "showAddCommand": true,
+  "debug": false,
+  "editorMenu": [],
+  "fileMenu": [],
+  "leftRibbon": [
+    {
+      "id": "obsidian-shellcommands:shell-command-c2ya5gju8s",
+      "icon": "lucide-eye",
+      "name": "Shell commands: Execute: 本地预览",
+      "mode": "any"
+    },
+    {
+      "id": "obsidian-shellcommands:shell-command-2awn5o233r",
+      "icon": "lucide-plane",
+      "name": "Shell commands: Execute: 发布博客",
+      "mode": "any"
+    },
+    {
+      "id": "obsidian-shellcommands:shell-command-19jk0tipl1",
+      "icon": "lucide-save",
+      "name": "Shell commands: Execute: 备份源码",
+      "mode": "any"
+    }
+  ],
+  "rightRibbon": [],
+  "titleBar": [],
+  "statusBar": [],
+  "pageHeader": [],
+  "macros": [],
+  "explorer": [],
+  "hide": {
+    "statusbar": [],
+    "leftRibbon": []
+  },
+  "spacing": 8,
+  "advancedToolbar": {
+    "rowHeight": 48,
+    "rowCount": 1,
+    "spacing": 0,
+    "buttonWidth": 48,
+    "columnLayout": false,
+    "mappedIcons": [],
+    "tooltips": false,
+    "heightOffset": 0
+  }
+}

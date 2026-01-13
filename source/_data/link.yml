@@ -1,0 +1,20 @@
+- class_name: 大佬们  # 这是第一组的标题（比如“技术圈”）
+  class_desc: 只有技术大佬才能进的分组  # 这是这组的描述（可不填）
+  link_list:
+    - name: Gemini  # 朋友的名字
+      link: https://gemini.google.com/  # 博客链接
+      avatar: https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg  # 头像链接
+      descr: 谷歌最强的AI模型  # 简介
+
+    - name: 另一个朋友
+      link: https://example.com
+      avatar: https://i.loli.net/2021/03/30/PW66y2g1I5nBdi3.png
+      descr: 这里写他的介绍
+
+- class_name: 生活伙伴  # 这是第二组的标题
+  class_desc: 记录生活的博主们
+  link_list:
+    - name: 朋友C
+      link: https://test.com
+      avatar: https://example.com/avatar.jpg
+      descr: 热爱生活
