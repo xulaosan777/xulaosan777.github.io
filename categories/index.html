@@ -11,7 +11,7 @@
 <meta property="article:author" content="追逐物自体">
 <meta property="article:tag" content="个人博客, 编程, 读书笔记, 生活随笔, 哲学, ai">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/xulaosan777/blog-imgs/imgs/20260113185041389.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/light.png"><link rel="canonical" href="https://xulaosan777.github.io/categories/index.html"><link rel="preconnect"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=7.1.0"><script>
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/xulaosan777/blog-imgs/imgs/20260113185041389.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/light.png"><link rel="canonical" href="https://xulaosan777.github.io/categories/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
     (() => {
       
     const saveToLocal = {
@@ -128,7 +128,7 @@
   lightbox: 'null',
   Snackbar: undefined,
   infinitegrid: {
-    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.13.0',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
@@ -211,7 +211,7 @@
 
   const loadTwikoo = (el, path) => {
     if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
-    else btf.getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js?v=1.6.44').then(() => init(el, path))
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js').then(() => init(el, path))
   }
 
   if (isShuoshuo) {
